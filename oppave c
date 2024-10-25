@@ -1,0 +1,118 @@
+# oppgave a
+def my_max(lst):
+    if len(lst) == 0:
+        return None  # Returnerer None hvis listen er tom
+    max_value = lst[0]
+    for num in lst: # går gjennom hvert element i listen, # og sjekker om hvert element er større enn max_value
+        if num > max_value: 
+            max_value = num
+    return max_value # returnerer tallet med høyest verdi 
+
+def finn_storste(lst):
+    max_value = my_max(lst)
+    if max_value is None:
+        return "Listen er tom."
+    else:
+        return f"Det største tallet i listen er {max_value}."
+resultat = finn_storste([1, 2, 3, 4, 5, 6,])
+print(resultat)
+
+# Definer my_str_len-funksjonen først
+def my_str_len(s):
+    count = 0 # holder styr på hvor mange variabler som er telt i strengen 
+    for char in s:
+        count += 1 # for hvert tegn øker count med 1 
+    return count
+
+# Definer en ny funksjon som bruker my_str_len
+def finn_streng_lengde(s):
+    lengde = my_str_len(s) # Her kaller vi my_str_len(s) for å beregne lengden på strengen s.
+    #Resultatet blir lagret i variabelen lengde.
+    return f"Strengen '{s}' har {lengde} tegn."
+
+# Kall på funksjonen
+resultat = finn_streng_lengde("hei verden")
+print(resultat)
+
+
+
+
+# excersise oppgavene i oppg c
+
+#9.1.1
+
+def moon_weight(earth_weight):
+    """
+    Compute weight on the moon from weight on earth.
+    """
+    return earth_weight * 1/6
+
+
+
+#9.1.6.1
+def num_to_str(numbers):
+    return ["pos" if num > 0 else "neg" if num < 0 else "zero" for num in numbers]
+numbers = [10, -5, 0]
+result = num_to_str(numbers)
+print(result)  # Output: ['pos', 'neg', 'zero', 'pos', 'neg']
+
+def has_length_five(strings):
+    return any(len(s) == 5 for s in strings)
+
+strings = ["hello", "world", "Python", "AI"]
+result = has_length_five(strings)
+print(result)  
+
+def even_numbers_in_range(numbers):
+    return [num for num in numbers if 10 <= num <= 20 and num % 2 == 0]
+numbers = [5, 12, 15, 18, 21, 22]
+result = even_numbers_in_range(numbers)
+print(result)  # Output: [12, 18]
+
+
+
+#9.1.8.2
+def all_z_words(words):
+    """
+    Return a list of words that start with the letter 'z' or 'Z'.
+    """
+    return list(filter(lambda w: w.startswith('z') or w.startswith('Z'), words))
+
+words = ["zebra", "cow", "zoo", "cat"]
+result = all_z_words(words)
+print(result)
+
+def test_zwords():
+    assert all_z_words(["zebra", "cow", "zoo", "cat"]) == ["zebra", "zoo"]
+test_zwords()
+
+
+
+
+#9.1.2.2
+# Step 1: Opprett en ordliste som tilordner romnavn til antall seter
+rooms = {
+    "Room A": 45,
+    "Room B": 60,
+    "Room C": 30,
+    "Room D": 80,
+    "Room E": 55
+}
+
+# Step 2.1: Slå opp hvor mange seter som er i et bestemt rom
+def get_seats(room_name):
+    return rooms.get(room_name, "Room not found")
+
+# Step 2.2: Endre kapasiteten til et bestemt rom for å ha 10 flere seter
+def add_seats(room_name):
+    if room_name in rooms:
+        rooms[room_name] += 10
+        print(f"{room_name} now has {rooms[room_name]} seats.")
+    
+# Step 2.3: Finn alle rom med plass til minst 50 studenter
+def rooms_with_min_seats(min_seats=50):
+    return {room: seats for room, seats in rooms.items() if seats >= min_seats}
+
+print(get_seats("Room B"))  # sjekker rom b
+print(rooms_with_min_seats())  
+add_seats("Room C")  #ser hvor mange seter rom c har, etter nye seter er lagt til 
