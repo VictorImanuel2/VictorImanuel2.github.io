@@ -1,0 +1,14 @@
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\bin\Debug\net8.0\LabØvelse6.exe
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\bin\Debug\net8.0\LabØvelse6.deps.json
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\bin\Debug\net8.0\LabØvelse6.runtimeconfig.json
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\bin\Debug\net8.0\LabØvelse6.dll
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\bin\Debug\net8.0\LabØvelse6.pdb
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\obj\Debug\net8.0\LabØvelse6.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\obj\Debug\net8.0\LabØvelse6.AssemblyInfoInputs.cache
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\obj\Debug\net8.0\LabØvelse6.AssemblyInfo.cs
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\obj\Debug\net8.0\LabØvelse6.csproj.CoreCompileInputs.cache
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\obj\Debug\net8.0\LabØvelse6.dll
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\obj\Debug\net8.0\refint\LabØvelse6.dll
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\obj\Debug\net8.0\LabØvelse6.pdb
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\obj\Debug\net8.0\LabØvelse6.genruntimeconfig.cache
+C:\Users\Bruker\source\repos\LabØvelse6\LabØvelse6\obj\Debug\net8.0\ref\LabØvelse6.dll
