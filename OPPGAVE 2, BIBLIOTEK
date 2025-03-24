@@ -1,0 +1,339 @@
+namespace InnleveringNr2
+{
+    
+    internal class Program
+    {
+
+
+        //lager funksjoner for det brukeren kan velge mellom 
+        static void LeggTilBok()
+        {
+            //få bruker til å gi nødvendig info
+
+            Console.WriteLine("legg til bok");
+            Console.WriteLine("ISBN: ");
+            int isbn = int.Parse(Console.ReadLine());
+            Console.WriteLine("Tittel: ");
+            string tittel = Console.ReadLine();
+            Console.WriteLine("forfatter: ");
+            string forfatter = Console.ReadLine();
+            Console.WriteLine("utgivelsesår: ");
+            int utgivelsesår = int.Parse(Console.ReadLine());
+            Console.WriteLine("type bok; (roman/fagbok)");
+            string type = Console.ReadLine();
+            type.ToLower();
+
+            //siden vi bare har to typer bøker må vi finne ut hvilken type det er, også legge dem til i lista
+
+            if (type == "roman")
+            {
+                Console.WriteLine("sjanger på roman: ");
+                string sjanger = Console.ReadLine();
+                bøker.Add(new Roman(sjanger, tittel, forfatter, isbn, utgivelsesår));  //legger til bøker med de titlene, forfatterene osv vi har gitt
+
+
+            }
+
+            else if (type == "fagbok")
+            {
+                Console.WriteLine("fagområde på fagboken: ");
+                string fagområde = Console.ReadLine();
+                bøker.Add(new Roman(fagområde, tittel, forfatter, isbn, utgivelsesår));   //legger til bøker med de titlene, forfatterene osv vi har gitt
+
+
+            }
+            else
+                Console.WriteLine("ugyldig type bok");
+
+        }
+
+        static void VisAlleBøker()
+        {
+
+            foreach (var bok  in bøker)
+            {
+                 bok.VisInfo(); //viser bøkene med metode vi lagde unik for subklassene
+            }
+
+
+        }
+
+        static void finnForfatter()
+        {
+            Console.WriteLine("for å finne tilhørende bøker, Skriv inn navnet på forfatteren: ");
+            string finne = Console.ReadLine();
+            finne = finne.ToLower();
+
+            var FinnForfatter = 
+                from bok in bøker
+                where bok.Forfatter.ToLower().Contains(finne)    
+                select bok;
+
+            if (!FinnForfatter.Any())// om det ikke fins noen resultat av spørringen 
+            {
+                Console.WriteLine("det fins ingen bøker av forfatter: " + finne);
+            }
+            else
+            {
+
+                foreach (var f in FinnForfatter)
+                {
+                    f.VisInfo();
+                }
+
+            }
+
+
+        }
+        static void FinnÅrstall()
+        {
+
+            Console.WriteLine("hvilket årstall ble boken gitt ut i: ");
+            int årstall = int.Parse(Console.ReadLine());    
+
+            var finnårstall = 
+                from bok in bøker
+                where bok.Utgivelsesår == årstall
+                select bok;
+
+            if (!finnårstall.Any())
+            {
+                Console.WriteLine("det finnes ingen bøker for dette årstallet");
+            }
+            else
+            {
+
+                foreach (var x in finnårstall)
+                {
+                    x.VisInfo();
+                }
+
+
+
+
+            }
+
+        }
+        static void finnTittel()
+        {
+            Console.WriteLine("for å finne tilhørende bøker, Skriv inn navnet på forfatteren: ");
+            string finnetittel= Console.ReadLine();
+            finnetittel = finnetittel.ToLower();
+
+            var Finntittel =
+                from bok in bøker
+                where bok.Titel.ToLower().Contains(finnetittel)
+                select bok;
+
+            if (!Finntittel.Any())// om det ikke fins noen resultat av spørringen 
+            {
+                Console.WriteLine("vi har ingen bøker utgikk for dette årstallet: ");
+            }
+            else
+            {
+
+                foreach (var y in Finntittel )
+                {
+                    y.VisInfo();
+                }
+
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        static List<Bok> bøker = new List<Bok>();   //polymorfisme, klassene har bok til felles
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("velkommen til victor sitt bibliotek");
+
+
+            //legg til ny bok 
+            //list opp alle bøker 
+            //finn bøker etter forfatter 
+            //finn bøker utgitt etter årstall 
+            //finn boken ved at bruker skriver inn titel
+
+
+            bool kjør = true;
+
+
+
+            
+            int input = 0;
+
+
+            while (kjør)
+            {
+
+
+                Console.WriteLine("[1] Trykk 1 for å legge til ny bok");
+
+                Console.WriteLine("[2] 2 for å liste opp alle bøker") ;
+                Console.WriteLine("[3] for å finne bøker etter forfatter");
+                Console.WriteLine("[4] 4 for å finne bøker etter årstall");
+                Console.WriteLine("[5] eller 5 for å finne bok etter titel");
+
+                Console.WriteLine("(trykk 0 for å avslutte)");
+
+
+
+
+                input = int.Parse(Console.ReadLine());
+
+                switch (input)  //utfra hvilken mulighet brukeren velger så skal vi kalle på funksjon som er laget
+                {
+                    case 1:
+                        LeggTilBok();
+                        break;
+                    case 2:
+                        VisAlleBøker();
+                        break;
+                    case 3:
+                        finnForfatter();
+                        break;
+                    case 4:
+                        FinnÅrstall();
+                            break;
+                    case 5:
+                        finnTittel();
+                        break;
+                    
+
+                }
+
+
+
+
+                if (input == 0)
+                    break;
+
+
+
+
+
+
+
+
+
+            }
+
+
+            Console.WriteLine("takk for at du besøkte victor sitt bibliotek");
+
+
+
+
+
+
+        }
+
+
+    }
+
+    abstract class Bok
+    {
+        public int Isbn { get; set; }
+
+        public string Titel { get; set; }
+        public string Forfatter { get; set; }
+        public int Utgivelsesår { get; set; }
+
+
+
+        public abstract void VisInfo();
+        
+
+        public Bok(int isbn, string titel, string forfatter, int utgivelsesår)
+        {
+            Isbn = isbn;
+            Titel = titel;
+            Forfatter = forfatter;
+            Utgivelsesår = utgivelsesår;
+        }
+            
+
+    }
+    class Roman : Bok, IBokFunksjoner
+    {
+        public string Sjanger { get; set; }
+
+       
+        public Roman(string sjanger, string titel, string forfatter, int isbn,int utgivelsesår) : base (isbn, titel, forfatter, utgivelsesår)
+        {
+            Sjanger = sjanger;
+        }
+
+
+        public override void VisInfo()
+        {
+            Console.WriteLine($"Roman: {Titel} ({Utgivelsesår}) av {Forfatter} - Sjanger: {Sjanger}");
+        }
+
+        public void LånUt()
+        {
+            Console.WriteLine($"Romanen {Titel}: er lånt ut");
+        }
+
+        public void LeverInn()
+        {
+            Console.WriteLine($"Romanen {Titel}:  er levert inn");
+        }
+
+    }
+
+    class FagBok : Bok
+    {
+        public string Fagområde { get; set; }
+
+
+        public FagBok(string fagområde, string titel, string forfatter, int isbn, int utgivelsesår) : base(isbn, titel, forfatter, utgivelsesår)
+        {
+            Fagområde = fagområde;
+        }
+
+
+        public override void VisInfo()
+        {
+            Console.WriteLine($"fagboken: {Titel} ({Utgivelsesår}) av {Forfatter} - fagområde: {Fagområde}");
+        }
+
+        public void LånUt()
+        {
+            Console.WriteLine($"Fagboken {Titel}: er lånt ut");
+        }
+
+        public void LeverInn()
+        {
+            Console.WriteLine($"Fagboken {Titel}:  er levert inn");
+        }
+
+
+
+    }
+
+    interface IBokFunksjoner
+    {
+        void LånUt();
+        void LeverInn();
+
+
+    }
+
+
+     
+}
